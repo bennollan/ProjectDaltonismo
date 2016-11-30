@@ -1,0 +1,74 @@
+#-----------------------------------------------------------
+# Vivado v2016.3 (64-bit)
+# SW Build 1682563 on Mon Oct 10 19:07:27 MDT 2016
+# IP Build 1681267 on Mon Oct 10 21:28:31 MDT 2016
+# Start of session at: Wed Nov 30 13:37:33 2016
+# Process ID: 8716
+# Current directory: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2384 C:\Users\Ben\Google Drive\Digipen\Junior\ECE310L\ProjectDaltonismo\Daltonismo\Daltonismo.xpr
+# Log file: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/vivado.log
+# Journal file: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.xpr}
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-3] IPUserFilesDir: Could not find the directory 'C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.ip_user_files'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2016.3/data/ip'.
+launch_runs impl_1 -to_step write_bitstream
+[Wed Nov 30 13:37:59 2016] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.runs/synth_1/runme.log
+[Wed Nov 30 13:37:59 2016] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.runs/impl_1/runme.log
+open_hw
+connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2016.3
+  **** Build date : Oct 10 2016-19:47:06
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210276689856B
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+current_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 914.863 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a200tsbg484-1
+INFO: [Netlist 29-17] Analyzing 889 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.3
+INFO: [Device 21-403] Loading part xc7a200tsbg484-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+
+open_run: Time (s): cpu = 00:00:25 ; elapsed = 00:00:14 . Memory (MB): peak = 1331.344 ; gain = 368.238
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 30 13:49:02 2016...
