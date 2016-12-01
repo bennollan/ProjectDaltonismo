@@ -33,18 +33,19 @@ module Filter(
   always_comb
   begin
     if(frames + hue > 383)
-      correctedHue = (hue + frames) - 384;
+      correctedHue = hue;//(hue + frames) - 384;
     else
-      correctedHue = hue + frames;
+      correctedHue = hue;// + frames;
   end
   
     
   
   logic [7:0] sat;
+  logic [7:0] realSat;
   logic [7:0] val;
   logic [7:0] HSVred,HSVgreen,HSVblue;
   RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-  HSVtoRGB filt2(clk, correctedHue,sat, val, HSVred, HSVgreen, HSVblue);
+  HSVtoRGB filt2(clk, correctedHue,realSat, val, HSVred, HSVgreen, HSVblue);
     
     
   logic [2:0]filterStage;
@@ -92,6 +93,7 @@ module Filter(
         end
       end
       6:begin
+        realSat <= 255;
         syncOut <= syncIn;
         redOut <= HSVred;
         greenOut <= HSVgreen;
