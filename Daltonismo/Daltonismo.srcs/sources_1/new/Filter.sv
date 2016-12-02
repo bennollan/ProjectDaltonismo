@@ -236,6 +236,110 @@ module RGBtoHSV(
   end
 endmodule
 
+module pipelineRGBtoHSV(
+    input  logic       clk,
+    input  logic [7:0] red,
+    input  logic [7:0] green,
+    input  logic [7:0] blue,
+    output logic [8:0] hue,
+    output logic [7:0] sat,
+    output logic [7:0] val
+    );
+    
+  always@(posedge clk)
+  begin
+  
+    logic [7:0]delta;
+    
+    logic [7:0]offset;
+    logic [7:0]color1;
+    logic [7:0]color2;
+    logic [7:0]color3;
+    
+    if(red == green && green == blue)
+    begin
+      hue <= 0;
+      sat <= 0;
+      val <= red;
+    end
+    else
+    begin
+      if(red >= green && red >= blue)
+      begin
+        offset = 0;
+        color1 = red;
+        if(green > blue)
+        begin
+          color2 = green;
+          color3 = blue;
+          //delta = red - blue;
+          //hue <= ((green - blue) * 64) / delta; //0-64 red to yellow
+        end
+        else
+        begin
+          color2 = blue;
+          color3 = green;
+          //delta = red - green;
+          //hue <= 383 - ((blue - green) * 64) / delta; // 320-383 magenta to red
+        end
+         //val <= red;
+         //sat <= (delta * 255) / red;
+        
+      end
+      else if(green >= red && green >= blue)
+      begin
+        offset = 128;
+        color1 = green;
+        if(red > blue)
+        begin
+          color2 = red;
+          color3 = blue;
+          //delta = green - blue;
+          //hue <= 128 - ((red - blue) * 64) / delta;	// 64 - 128 yellow to green
+        end
+        else
+        begin
+          color2 = blue;
+          color3 = red;
+          //delta = green - red;
+          //hue <= 128 + ((blue - red) * 64) / delta;	// 128-192 green to cyan
+        end
+        //val <= green;
+        //sat <= (delta * 255) / green;
+        
+      end
+      else
+      begin
+        offset = 256;
+        color1 = blue; //Blue is the brightest channel for the cases herin
+        if(green > red)
+        begin
+          color2 = green;
+          color3 = red;
+          //delta = blue - red;
+          //hue <= 256 - ((green - red) * 64) / delta;  // 192-256 cyan to blue
+        end
+        else
+        begin
+          color2 = red;
+          color3 = green;
+          //delta = blue - green;
+          //hue <= 256 + ((red - green) * 64) / delta;  // 256-320 blue to magenta
+        end
+        //val <= blue;
+        //sat <= (delta * 255) / blue;
+        
+      end
+      
+      delta = color1 - color3;
+      hue <= offset + ((color2 - color3) * 64) / delta;
+      val <= color1;
+      sat <= (delta * 255) / color1;
+      
+    end
+  end
+endmodule
+
 module HSVtoRGB(
     input  logic       clk,
     input  logic [8:0] hue,
