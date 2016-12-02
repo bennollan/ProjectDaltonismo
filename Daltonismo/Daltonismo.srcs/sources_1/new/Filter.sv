@@ -44,7 +44,7 @@ module Filter(
   logic [7:0] val;
   logic [7:0] HSVred,HSVgreen,HSVblue;
   RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-  HSVtoRGB filt2(clk, correctedHue,sat, val, HSVred, HSVgreen, HSVblue);
+  HSVtoRGB filt2(clk, correctedHue,255, val, HSVred, HSVgreen, HSVblue);
     
     
   logic [2:0]filterStage;
@@ -186,7 +186,7 @@ module RGBtoHSV(
         if(green > blue)
         begin
           delta = red - blue;
-          hue <= ((green - blue) * 64) / delta; //0-64 red to yellow
+          hue <= ((green - blue) * 64) / delta; //0-63 red to yellow
         end
         else
         begin
