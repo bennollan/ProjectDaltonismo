@@ -25,8 +25,8 @@
 
 module top_module(
     input logic clk,
-    input logic [6:0]sw,
-    input logic btnC,
+    input logic [7:0]sw,
+    //input logic btnC,
     
     //HDMI in
     inout logic hdmi_rx_cec,
@@ -53,8 +53,6 @@ module top_module(
     );
 
   logic clkfb_2;
-  logic bitslip;
-  assign bitslip = sw[5];
   logic reset;
   assign reset = !locked;
   assign hdmi_tx_rsda = 'bZ;
@@ -89,7 +87,6 @@ module top_module(
   assign led[4] = redValidSymbol;
   assign led[3] = greenValidSymbol;
   assign led[2] = blueValidSymbol;
-  logic bitSlip;
   logic [2:0]syncIn;
   logic [7:0]redDataIn;
   logic [7:0]greenDataIn;
@@ -97,20 +94,20 @@ module top_module(
   logic [9:0]blueSymbolIn; 
   logic [9:0]greenSymbolIn; 
   logic [9:0]redSymbolIn; 
-  HdmiInputChannel BlueInput (clk, HdmiClk, HdmiClkx5, hdmi_rx_p[0], hdmi_rx_n[0], reset, sw[4:0], sw[5], blueValidSymbol, syncIn, blueDataIn , blueSymbolIn);
+  HdmiInputChannel BlueInput (clk, HdmiClk, HdmiClkx5, hdmi_rx_p[0], hdmi_rx_n[0], reset, blueValidSymbol, syncIn, blueDataIn , blueSymbolIn);
   
-  HdmiInputChannel GreenInput(clk, HdmiClk, HdmiClkx5, hdmi_rx_p[1], hdmi_rx_n[1], reset, sw[4:0], sw[5], greenValidSymbol,      , greenDataIn, greenSymbolIn);
+  HdmiInputChannel GreenInput(clk, HdmiClk, HdmiClkx5, hdmi_rx_p[1], hdmi_rx_n[1], reset, greenValidSymbol,      , greenDataIn, greenSymbolIn);
   
-  HdmiInputChannel RedInput  (clk, HdmiClk, HdmiClkx5, hdmi_rx_p[2], hdmi_rx_n[2], reset, sw[4:0], sw[5], redValidSymbol,        , redDataIn  , redSymbolIn);
+  HdmiInputChannel RedInput  (clk, HdmiClk, HdmiClkx5, hdmi_rx_p[2], hdmi_rx_n[2], reset, redValidSymbol,        , redDataIn  , redSymbolIn);
   
   logic [2:0]syncOut;
   logic [7:0]redDataOut;
   logic [7:0]greenDataOut;
   logic [7:0]blueDataOut;  
-  Filter SuperFilter(HdmiClk, btnC, syncIn, redDataIn, greenDataIn, blueDataIn, syncOut, redDataOut, greenDataOut, blueDataOut);
+  Filter SuperFilter(HdmiClk, sw[7:5], syncIn, redDataIn, greenDataIn, blueDataIn, syncOut, redDataOut, greenDataOut, blueDataOut);
   
   logic useSymbol;
-  assign useSymbol = !sw[6];
+  assign useSymbol = 1'b1; //!sw[6];
   HdmiOutputChannel BlueOutput (HdmiClk, HdmiClkx5, hdmi_tx_p[0], hdmi_tx_n[0], reset, syncOut            , blueDataOut,  blueSymbolIn,  useSymbol);
   
   HdmiOutputChannel GreenOutput(HdmiClk, HdmiClkx5, hdmi_tx_p[1], hdmi_tx_n[1], reset, {2'b00, syncOut[0]}, greenDataOut, greenSymbolIn, useSymbol);

@@ -12,15 +12,14 @@
 // 
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
 module Deserializer(
     input clk_mgmt,
     input clk,
     input clkx5,
     input reset,
     input logic bitslip,
-    input delay_ce,
-    input [4:0]delay_count,
+    //input delay_ce,
+    //input [4:0]delay_count,
     input serial,
     output [9:0]parallel
     );
@@ -46,33 +45,23 @@ module Deserializer(
       begin
         ce <= ~reset;
       end
-    
-    IDELAYE2 #(
-              .CINVCTRL_SEL("FALSE"),
-              .DELAY_SRC("DATAIN"),
-              .HIGH_PERFORMANCE_MODE("TRUE"),
-              .IDELAY_TYPE("VAR_LOAD"),
-              .IDELAY_VALUE(0),
-              .PIPE_SEL("FALSE"),
-              .REFCLK_FREQUENCY(200.0),
-              .SIGNAL_PATTERN("DATA")
-        )
-        InputDelay (
-              .DATAIN(serial),
-              .IDATAIN('b0),
-              .DATAOUT(delayed),
-              
-              .CNTVALUEOUT(),
-              .C(clk_mgmt),
-              .CE(delay_ce),
-              .CINVCTRL('b0),
-              .CNTVALUEIN(delay_count),
-              .INC('b0),
-              .LD('b1),
-              .LDPIPEEN('b0),
-              .REGRST('b0)
-        );
-    
+  logic [4:0]delayAmount;
+  InputDelay DelayLeft(clk_mgmt, serial, delayUpdate, delayAmount + 4, leftOut);
+  InputDelay DelayCenter(clk_mgmt, serial, delayUpdate, delayAmount, delayed);
+  InputDelay DelayRight(clk_mgmt, serial, delayUpdate, delayAmount - 4, rightOut);
+  logic [4:0]delayWaitCounter;
+  always_ff @(posedge clkx5)
+  begin
+    if(delayWaitCounter == 0)
+    begin
+      if(leftOut ^ delayed == 1)
+        delayAmount <= delayAmount + 1;
+      else if(rightOut ^ delayed == 1)
+        delayAmount <= delayAmount - 1;
+    end
+    delayWaitCounter <= delayWaitCounter + 1;
+  end
+
   ISERDESE2 #(
           .DATA_RATE("DDR"),
           .DATA_WIDTH(10),
@@ -173,4 +162,32 @@ module Deserializer(
            .SHIFTIN2(shift2) 
         );
         
+endmodule
+
+module InputDelay(input clk, dataIn, delayUpdate, [4:0]delayValue, output dataOut);
+  IDELAYE2 #(
+            .CINVCTRL_SEL("FALSE"),
+            .DELAY_SRC("DATAIN"),
+            .HIGH_PERFORMANCE_MODE("TRUE"),
+            .IDELAY_TYPE("VAR_LOAD"),
+            .IDELAY_VALUE(0),
+            .PIPE_SEL("FALSE"),
+            .REFCLK_FREQUENCY(200.0),
+            .SIGNAL_PATTERN("DATA")
+      )
+      DelayerUnit (
+            .DATAIN(dataIn),
+            .IDATAIN('b0),
+            .DATAOUT(dataOut),
+            
+            .CNTVALUEOUT(),
+            .C(clk),
+            .CE(delayUpdate),
+            .CINVCTRL('b0),
+            .CNTVALUEIN(delayValue),
+            .INC('b0),
+            .LD('b1),
+            .LDPIPEEN('b0),
+            .REGRST('b0)
+      );
 endmodule

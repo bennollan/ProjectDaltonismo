@@ -8,9 +8,10 @@
 // Project Name: Daltonismo
 // Target Devices: Digilent Nexys Video
 // Tool Versions: Vivado 2015.4
-// Description: Delays Signal for a number of clock cycles
+// Description: Delays Signal for a number of clock cycles.
 // 
 //////////////////////////////////////////////////////////////////////////////////
+
 
 module DelaySignal(
       clk,
