@@ -1,13 +1,13 @@
 #-----------------------------------------------------------
-# Vivado v2015.4 (64-bit)
-# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
-# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Wed Nov 30 15:23:45 2016
-# Process ID: 6096
-# Current directory: C:/Users/Ben/Google/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9884 C:\Users\Ben\Google\Digipen\Junior\ECE310L\ProjectDaltonismo\Daltonismo\Daltonismo.xpr
-# Log file: C:/Users/Ben/Google/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/vivado.log
-# Journal file: C:/Users/Ben/Google/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo\vivado.jou
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:23 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Tue Feb 14 11:44:37 2017
+# Process ID: 1336
+# Current directory: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12880 C:\Users\Ben\Google Drive\Digipen\Junior\ECE310L\Daltonismo\Daltonismo.xpr
+# Log file: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo/vivado.log
+# Journal file: C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project C:/Users/Ben/Google/Digipen/Junior/ECE310L/ProjectDaltonismo/Daltonismo/Daltonismo.xpr
+open_project {C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo/Daltonismo.xpr}

@@ -21,7 +21,7 @@ module edid_rom(
 
 
 
-   logic [7:0]edid_rom[0:255] = {
+   const logic [7:0]edid_rom[256] = {
       //// BASE EDID Bytes 0 to 35 ////////////////////
       // Header
       8'h00,8'hFF,8'hFF,8'hFF,8'hFF,8'hFF,8'hFF,8'h00,

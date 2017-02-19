@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/29/2016 09:44:36 PM
+// Create Date: 12/06/2016 02:51:22 PM
 // Design Name: 
-// Module Name: HSVTest
+// Module Name: DaltonizeTest
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module HSVTest(
+module DaltonizeTest(
 
     );
     
@@ -28,9 +28,9 @@ module HSVTest(
     logic [7:0] sat;
     logic [7:0] val;
     logic [7:0] HSVred,HSVgreen,HSVblue;
-    logic [7:0] redIn = 200;
-    logic [7:0] greenIn = 200;
-    logic [7:0] blueIn = 200;
+    logic [7:0] redIn = 234;
+    logic [7:0] greenIn = 33;
+    logic [7:0] blueIn = 30;
     logic clk = 1;
     logic [3:0]counter = 1;
     always
@@ -41,10 +41,17 @@ module HSVTest(
     always@(posedge clk)
     begin
       counter <= counter + 1;
-      if(counter == 0)
-        greenIn <= greenIn + 10;
+      //if(counter == 0)
+        //greenIn <= greenIn + 10;
     end
     
       RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-      HSVtoRGB filt2(clk, hue,sat, val, HSVred, HSVgreen, HSVblue);
+      logic[7:0] correctedSat;
+      Daltonizer colorCorrect(clk, hue, sat, correctedSat);
+      logic[8:0] hueDelayed;
+      logic[7:0] valDelayed;
+      DelaySignal #(.DATA_WIDTH(9),.DELAY_CYCLES(8)) HueDelay(clk,hue, hueDelayed);
+      DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES(8)) ValueDelay(clk,val, valDelayed);
+      
+      HSVtoRGB filt2(clk, hueDelayed,correctedSat, valDelayed, HSVred, HSVgreen, HSVblue);
 endmodule

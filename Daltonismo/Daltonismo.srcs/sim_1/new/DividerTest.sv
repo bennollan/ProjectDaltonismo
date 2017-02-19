@@ -28,6 +28,7 @@ module DividerTest(
       logic [7:0] data = 0;
       logic [7:0] dataDelayed;
       logic [7:0] datadivided;
+      logic[7:0]div = 0;
       always
       begin
         #5 clk = !clk;
@@ -35,10 +36,11 @@ module DividerTest(
       
       always@(posedge clk)
       begin
-        data <= data+5;
+        data <= data+2;
+        div <= div + 1;
       end
-      logic[7:0]div = 2;
-      DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES('h20)) Delayed(clk,data, dataDelayed);
-      Divider #(.DIVIDEND_WIDTH(8), .DIVIDER_WIDTH(8), .QUOTENT_WIDTH(8)) 
+      
+      DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES(8)) Delayed(clk,data, dataDelayed);
+      Divider #(.DIVIDEND_WIDTH(8), .DIVIDER_WIDTH(8), .QUOTIENT_WIDTH(8)) 
           DividerNameHere(clk,data, div, datadivided);
 endmodule

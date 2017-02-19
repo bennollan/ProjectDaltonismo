@@ -21,10 +21,8 @@ module HdmiInputChannel(
     input hdmi_rx_p,
     input hdmi_rx_n,
     input reset,
-    input [4:0] inputDelay,
-    input bitSlip,
     output logic dataValid,
-    output [2:0] syncs,
+    output logic [2:0] syncOut,
     output [7:0] dataOut,
     output [9:0] symbol
     );
@@ -40,50 +38,59 @@ module HdmiInputChannel(
     //  InputDelay/Deserializer
     /////////////////////////////
     logic slip;
-    logic [4:0]delay_count;
-    logic delay_ce;
-    Deserializer Deserial(clk100,clk,clkx5,reset,slip,delay_ce,delay_count,serIn,symbol);
+    logic [4:0]autoDelay;
+    Deserializer Deserial(clk100,clk,clkx5,reset,slip,autoDelay,serIn,symbol);
     
     /////////////////////////
     //  TMDS Symbol Decoder
     /////////////////////////
     logic symbolGood;
+    logic [2:0]syncs;
     TmdsDecoder Decode(clk,symbol,symbolGood,dataOut,syncs);
     
+    logic testing;
+    always_comb
+    begin
+      if(testing)
+        syncOut = 3'b101;
+      else
+        syncOut = syncs;
+    end
     
-    
-    logic slipBuf;
-    logic [15:0]goodCount;
+
+    logic [23:0]goodCount;
     logic [3:0]bitSlips;
     logic [2:0]validWait;
-    logic slippingActive;
+    logic oneExtra;
+    
     always@(posedge clk)
     begin
-      if(bitSlip)
+      if(reset)
       begin
-        slippingActive <= 1;
+        autoDelay <= 0;
         bitSlips <= 0;
-      end //if(sw[5])
-      if(slippingActive)
+      end
+
+      if(bitSlips == 11)
       begin
-        if(validWait == 0)
+        autoDelay <= autoDelay + 1;
+        bitSlips <= 0;
+      end
+      if(validWait == 0)
+      begin
+        if(symbolGood == 0)
         begin
-          if(dataValid || bitSlips == 15)
-            slippingActive <= 0;
-          else if(symbolGood == 0)
-          begin
-            slip <= 1;
-            bitSlips <= bitSlips + 1;
-          end
-        end //if(validWait == 0)
-        else
-          slip <= 0;
-        validWait <= validWait + 1;
-      end //if(slippingActive)
+          slip <= 1;
+          bitSlips <= bitSlips + 1;
+        end
+      end //if(validWait == 0)
+      else
+        slip <= 0;
+      validWait <= validWait + 1;
       
       if(symbolGood)
       begin
-        if(goodCount < 16'hFFFF)
+        if(goodCount < 24'hFFFFFF)
           goodCount <= goodCount + 1;
         else
           dataValid <= 1;
@@ -92,27 +99,17 @@ module HdmiInputChannel(
       begin
         dataValid <= 0;
         goodCount <= 0;
+        oneExtra <= 0;
       end
+
+      if(dataValid && !oneExtra && !validWait)
+      begin
+        autoDelay <= autoDelay + 1;
+        oneExtra <= 1;
+      end
+
       
     end //always@(posedge HdmiClk)
-    
-    
-    logic [19:0]count;
-    always@(posedge clk100)
-    begin
-      if(count == 0)
-      begin
-        if(delay_count != inputDelay)
-        begin
-          delay_count <= inputDelay;
-          delay_ce <= 1;
-        end
-      end
-      else
-        delay_ce <= 0;
-        
-      count <= count + 1;
-    end
     
 endmodule
 
@@ -157,9 +154,9 @@ module HdmiOutputChannel(
   always_comb
   begin
     if(useSymbol)
-      symOut = symbolIn;
-    else
       symOut = encodedSym;
+    else
+      symOut = symbolIn;
   end
     
 endmodule
