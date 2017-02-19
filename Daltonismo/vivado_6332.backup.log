@@ -2,10 +2,10 @@
 # Vivado v2015.4 (64-bit)
 # SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Sat Feb 18 16:51:50 2017
-# Process ID: 9716
+# Start of session at: Sat Feb 18 16:50:15 2017
+# Process ID: 6332
 # Current directory: C:/Users/Dingler/Documents/ProjectDaltonismo/Daltonismo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8660 C:\Users\Dingler\Documents\ProjectDaltonismo\Daltonismo\Daltonismo.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4948 C:\Users\Dingler\Documents\ProjectDaltonismo\Daltonismo\Daltonismo.xpr
 # Log file: C:/Users/Dingler/Documents/ProjectDaltonismo/Daltonismo/vivado.log
 # Journal file: C:/Users/Dingler/Documents/ProjectDaltonismo/Daltonismo\vivado.jou
 #-----------------------------------------------------------
@@ -18,6 +18,7 @@ WARNING: [filemgmt 56-3] IPStaticSourceDir: Could not find the directory 'C:/Use
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.4/data/ip'.
-open_project: Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 755.949 ; gain = 121.488
+open_project: Time (s): cpu = 00:00:19 ; elapsed = 00:00:10 . Memory (MB): peak = 768.418 ; gain = 140.098
+update_compile_order -fileset sources_1
 exit
-INFO: [Common 17-206] Exiting Vivado at Sat Feb 18 16:52:29 2017...
+INFO: [Common 17-206] Exiting Vivado at Sat Feb 18 16:51:01 2017...
