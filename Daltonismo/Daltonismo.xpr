@@ -3,11 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<<<<<<< HEAD
-<Project Version="7" Minor="10" Path="C:/Users/Dingler/Documents/ProjectDaltonismo/Daltonismo/Daltonismo.xpr">
-=======
 <Project Version="7" Minor="17" Path="C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo/Daltonismo.xpr">
->>>>>>> refs/remotes/origin/ben
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="4947d468d8c84de58c06164b25145c1c"/>
@@ -80,9 +76,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-<<<<<<< HEAD
-      <File Path="$PSRCDIR/sources_1/new/I2cSlave.sv">
-=======
       <File Path="$PSRCDIR/sources_1/new/Divider.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -91,7 +84,6 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/DelaySignal.sv">
->>>>>>> refs/remotes/origin/ben
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -134,13 +126,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-<<<<<<< HEAD
-      <File Path="$PSRCDIR/sources_1/new/Deserializer.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PSRCDIR/sources_1/new/Deserializer.sv"/>
-          <Attr Name="ImportTime" Val="1480539558"/>
-=======
       <File Path="$PSRCDIR/sources_1/new/ClockGenerators.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sources_1/new/ClockGenerators.sv"/>
@@ -154,7 +139,6 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sources_1/new/main.sv"/>
           <Attr Name="ImportTime" Val="1480545277"/>
->>>>>>> refs/remotes/origin/ben
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -182,14 +166,11 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
       <Filter Type="Srcs"/>
-<<<<<<< HEAD
-=======
       <File Path="$PSRCDIR/sim_1/new/DaltonizeTest.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
->>>>>>> refs/remotes/origin/ben
       <File Path="$PSRCDIR/sim_1/new/HSVTest.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/HSVTest.sv"/>
@@ -213,11 +194,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-<<<<<<< HEAD
-        <Option Name="TopModule" Val="HSVTest"/>
-=======
         <Option Name="TopModule" Val="DaltonizeTest"/>
->>>>>>> refs/remotes/origin/ben
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>

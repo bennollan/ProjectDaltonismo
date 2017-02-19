@@ -32,12 +32,6 @@ module Filter(
   logic [8:0] correctedHue;
   always_comb
   begin
-<<<<<<< HEAD
-    if(frames + hue > 383)
-      correctedHue = hue;//(hue + frames) - 384;
-    else
-      correctedHue = hue;// + frames;
-=======
     if(switcher > 3'b100)
     begin
       if(frames + hue > 383)
@@ -47,26 +41,17 @@ module Filter(
     end
     else
       correctedHue = hue;
->>>>>>> refs/remotes/origin/ben
   end
   
     
   
   logic [7:0] sat;
-<<<<<<< HEAD
-  logic [7:0] realSat;
-=======
   logic [7:0] correctedSat;
   logic [7:0] satDelayed;
->>>>>>> refs/remotes/origin/ben
   logic [7:0] val;
   logic [7:0] correctedVal;
   logic [7:0] HSVred,HSVgreen,HSVblue;
   RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-<<<<<<< HEAD
-  HSVtoRGB filt2(clk, correctedHue,realSat, val, HSVred, HSVgreen, HSVblue);
-    
-=======
   Daltonizer colorCorrect(clk, hue, sat, val, correctedSat, correctedVal);
   logic[8:0] hueDelayed;
   logic[7:0] valDelayed;
@@ -77,7 +62,6 @@ module Filter(
   logic [7:0] satRGB;
   logic [7:0] valRGB;
   HSVtoRGB filt2(clk, hueDelayed,satRGB, valRGB, HSVred, HSVgreen, HSVblue);
->>>>>>> refs/remotes/origin/ben
     
   DelaySignal #(.DATA_WIDTH(3),.DELAY_CYCLES(20)) SyncDelay(clk,syncIn, syncOut);
   logic [2:0]currentFilter;
@@ -119,15 +103,9 @@ module Filter(
         greenOut <= ~HSVgreen;
         blueOut <= ~HSVblue;
       end
-<<<<<<< HEAD
-      6:begin
-        realSat <= 255;
-        syncOut <= syncIn;
-=======
       default:begin
         satRGB <= satDelayed;
         valRGB <= valDelayed;
->>>>>>> refs/remotes/origin/ben
         redOut <= HSVred;
         greenOut <= HSVgreen;
         blueOut <= HSVblue;
@@ -290,29 +268,11 @@ module RGBtoHSV(
     end
     else if(green >= red && green >= blue)
     begin
-<<<<<<< HEAD
-      if(red >= green && red >= blue)
-      begin
-        if(green > blue)
-        begin
-          delta = red - blue;
-          hue <= ((green - blue) * 64) / delta; //0-64 red to yellow
-        end
-        else
-        begin
-          delta = red - green;
-          hue <= 383 - ((blue - green) * 64) / delta; // 320-383 magenta to red
-        end
-         val <= red;
-         sat <= (delta * 255) / red;
-        
-=======
       if(red > blue)
       begin  // 64 - 128 yellow to green
         min = blue;
         mid = red;
         switcher <= 2;
->>>>>>> refs/remotes/origin/ben
       end
       else
       begin  // 128-192 green to cyan
