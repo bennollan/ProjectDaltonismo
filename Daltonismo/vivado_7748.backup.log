@@ -1,0 +1,627 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:23 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Tue Jan 31 15:03:19 2017
+# Process ID: 7748
+# Current directory: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4440 C:\Users\Ben\Google Drive\Digipen\Daltonismo-2016.4 test\Daltonismo.xpr
+# Log file: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/vivado.log
+# Journal file: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.xpr}
+INFO: [Project 1-313] Project file moved from 'C:/Users/Ben/Google Drive/Digipen/Junior/ECE310L/Daltonismo' since last save.
+Scanning sources...
+Finished scanning sources
+CRITICAL WARNING: [Board 49-67] The board_part definition was not found for digilentinc.com:nexys_video:part0:1.1. Valid board_part values can be retrieved with the 'get_board_parts' Tcl command.
+INFO: [Project 1-230] Project 'Daltonismo.xpr' upgraded for this version of Vivado.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2016.4/data/ip'.
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Jan 31 15:10:13 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+open_hw
+connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210276689856B
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+current_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 939.234 ; gain = 0.758
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Jan 31 15:35:05 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 15:35:05 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property flow {Vivado Synthesis 2016} [get_runs synth_1]
+set_property strategy Flow_RuntimeOptimized [get_runs synth_1]
+set_property flow {Vivado Implementation 2016} [get_runs impl_1]
+set_property strategy Flow_RuntimeOptimized [get_runs impl_1]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Jan 31 15:47:30 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 15:47:30 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 982.723 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+set_property strategy {Vivado Synthesis Defaults} [get_runs synth_1]
+set_property strategy {Vivado Implementation Defaults} [get_runs impl_1]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Jan 31 15:53:40 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 15:53:40 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 995.449 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+set_property strategy Performance_NetDelay_low [get_runs impl_1]
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Jan 31 15:59:15 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 995.449 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a200tsbg484-1
+INFO: [Netlist 29-17] Analyzing 269 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Device 21-403] Loading part xc7a200tsbg484-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+
+open_run: Time (s): cpu = 00:00:20 ; elapsed = 00:00:12 . Memory (MB): peak = 1416.352 ; gain = 420.902
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Tue Jan 31 16:11:58 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 16:11:58 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1806.082 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Tue Jan 31 17:47:45 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 17:47:45 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1806.082 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1806.082 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+open_run impl_1
+INFO: [Netlist 29-17] Analyzing 269 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module_early.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module_early.xdc]
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.312 . Memory (MB): peak = 1990.285 ; gain = 0.453
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.312 . Memory (MB): peak = 1990.285 ; gain = 0.453
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
+set_property strategy Flow_RuntimeOptimized [get_runs impl_1]
+set_property strategy Flow_RuntimeOptimized [get_runs synth_1]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Tue Jan 31 18:11:52 2017] Launched synth_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/synth_1/runme.log
+[Tue Jan 31 18:11:52 2017] Launched impl_1...
+Run output will be captured here: C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/runme.log
+close_design
+refresh_design
+INFO: [Netlist 29-17] Analyzing 254 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 2088.816 ; gain = 0.000
+set_property PROBES.FILE {} [lindex [get_hw_devices xc7a200t_0] 0]
+set_property PROGRAM.FILE {C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.runs/impl_1/top_module.bit} [lindex [get_hw_devices xc7a200t_0] 0]
+program_hw_devices [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2088.816 ; gain = 0.000
+refresh_hw_device [lindex [get_hw_devices xc7a200t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a200t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+WARNING: [Labtoolstcl 44-130] No matching hw_ilas were found.
+open_run impl_1
+INFO: [Netlist 29-17] Analyzing 254 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module_early.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module_early.xdc]
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/.Xil/Vivado-7748-Killer/dcp/top_module.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.312 . Memory (MB): peak = 2088.816 ; gain = 0.000
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.312 . Memory (MB): peak = 2088.816 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
+current_design synth_1
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a200tsbg484-1
+Top: top_module
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:06:09 ; elapsed = 03:18:21 . Memory (MB): peak = 2156.762 ; gain = 1945.691
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top_module' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/main.sv:26]
+INFO: [Synth 8-638] synthesizing module 'edid_rom' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/I2cSlave.sv:16]
+INFO: [Synth 8-256] done synthesizing module 'edid_rom' (1#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/I2cSlave.sv:16]
+INFO: [Synth 8-638] synthesizing module 'HdmiClockGen' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/ClockGenerators.sv:17]
+INFO: [Synth 8-638] synthesizing module 'IBUFDS' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:14161]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter DQS_BIAS bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: TMDS_33 - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IBUFDS' (2#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:14161]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_BASE' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:20534]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 5.000000 - type: float 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKIN1_PERIOD bound to: 6.734007 - type: float 
+	Parameter CLKOUT0_DIVIDE_F bound to: 5.000000 - type: float 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT1_DIVIDE bound to: 5 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: float 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.000000 - type: float 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_BASE' (3#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:20534]
+INFO: [Synth 8-638] synthesizing module 'BUFIO' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-256] done synthesizing module 'BUFIO' (4#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-256] done synthesizing module 'HdmiClockGen' (5#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/ClockGenerators.sv:17]
+INFO: [Synth 8-638] synthesizing module 'ClockDoubler' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/ClockGenerators.sv:117]
+INFO: [Synth 8-638] synthesizing module 'MMCME2_BASE__parameterized0' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:20534]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 8.000000 - type: float 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: float 
+	Parameter CLKOUT0_DIVIDE_F bound to: 4.000000 - type: float 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT1_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: float 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: float 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: float 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.000000 - type: float 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-256] done synthesizing module 'MMCME2_BASE__parameterized0' (5#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:20534]
+INFO: [Synth 8-256] done synthesizing module 'ClockDoubler' (6#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/ClockGenerators.sv:117]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/main.sv:78]
+INFO: [Synth 8-638] synthesizing module 'IDELAYCTRL' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:16182]
+	Parameter SIM_DEVICE bound to: 7SERIES - type: string 
+INFO: [Synth 8-256] done synthesizing module 'IDELAYCTRL' (7#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:16182]
+INFO: [Synth 8-638] synthesizing module 'HdmiInputChannel' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/HdmiInOut.sv:17]
+INFO: [Synth 8-638] synthesizing module 'Deserializer' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Deserializer.sv:16]
+INFO: [Synth 8-638] synthesizing module 'IDELAYE2' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:16195]
+	Parameter CINVCTRL_SEL bound to: FALSE - type: string 
+	Parameter DELAY_SRC bound to: DATAIN - type: string 
+	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 
+	Parameter IDELAY_TYPE bound to: VAR_LOAD - type: string 
+	Parameter IDELAY_VALUE bound to: 0 - type: integer 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_DATAIN_INVERTED bound to: 1'b0 
+	Parameter IS_IDATAIN_INVERTED bound to: 1'b0 
+	Parameter PIPE_SEL bound to: FALSE - type: string 
+	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: float 
+	Parameter SIGNAL_PATTERN bound to: DATA - type: string 
+	Parameter SIM_DELAY_D bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'IDELAYE2' (8#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:16195]
+INFO: [Synth 8-638] synthesizing module 'ISERDESE2' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:19685]
+	Parameter DATA_RATE bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 10 - type: integer 
+	Parameter DYN_CLKDIV_INV_EN bound to: FALSE - type: string 
+	Parameter DYN_CLK_INV_EN bound to: FALSE - type: string 
+	Parameter INIT_Q1 bound to: 1'b0 
+	Parameter INIT_Q2 bound to: 1'b0 
+	Parameter INIT_Q3 bound to: 1'b0 
+	Parameter INIT_Q4 bound to: 1'b0 
+	Parameter INTERFACE_TYPE bound to: NETWORKING - type: string 
+	Parameter IOBDELAY bound to: BOTH - type: string 
+	Parameter IS_CLKB_INVERTED bound to: 1'b0 
+	Parameter IS_CLKDIVP_INVERTED bound to: 1'b0 
+	Parameter IS_CLKDIV_INVERTED bound to: 1'b0 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_OCLKB_INVERTED bound to: 1'b0 
+	Parameter IS_OCLK_INVERTED bound to: 1'b0 
+	Parameter NUM_CE bound to: 1 - type: integer 
+	Parameter OFB_USED bound to: FALSE - type: string 
+	Parameter SERDES_MODE bound to: MASTER - type: string 
+	Parameter SRVAL_Q1 bound to: 1'b0 
+	Parameter SRVAL_Q2 bound to: 1'b0 
+	Parameter SRVAL_Q3 bound to: 1'b0 
+	Parameter SRVAL_Q4 bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'ISERDESE2' (9#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:19685]
+INFO: [Synth 8-638] synthesizing module 'ISERDESE2__parameterized0' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:19685]
+	Parameter DATA_RATE bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 10 - type: integer 
+	Parameter DYN_CLKDIV_INV_EN bound to: FALSE - type: string 
+	Parameter DYN_CLK_INV_EN bound to: FALSE - type: string 
+	Parameter INIT_Q1 bound to: 1'b0 
+	Parameter INIT_Q2 bound to: 1'b0 
+	Parameter INIT_Q3 bound to: 1'b0 
+	Parameter INIT_Q4 bound to: 1'b0 
+	Parameter INTERFACE_TYPE bound to: NETWORKING - type: string 
+	Parameter IOBDELAY bound to: BOTH - type: string 
+	Parameter IS_CLKB_INVERTED bound to: 1'b0 
+	Parameter IS_CLKDIVP_INVERTED bound to: 1'b0 
+	Parameter IS_CLKDIV_INVERTED bound to: 1'b0 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_OCLKB_INVERTED bound to: 1'b0 
+	Parameter IS_OCLK_INVERTED bound to: 1'b0 
+	Parameter NUM_CE bound to: 1 - type: integer 
+	Parameter OFB_USED bound to: FALSE - type: string 
+	Parameter SERDES_MODE bound to: SLAVE - type: string 
+	Parameter SRVAL_Q1 bound to: 1'b0 
+	Parameter SRVAL_Q2 bound to: 1'b0 
+	Parameter SRVAL_Q3 bound to: 1'b0 
+	Parameter SRVAL_Q4 bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'ISERDESE2__parameterized0' (9#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:19685]
+INFO: [Synth 8-256] done synthesizing module 'Deserializer' (10#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Deserializer.sv:16]
+INFO: [Synth 8-638] synthesizing module 'TmdsDecoder' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/TmdsDecoder.sv:17]
+INFO: [Synth 8-256] done synthesizing module 'TmdsDecoder' (11#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/TmdsDecoder.sv:17]
+WARNING: [Synth 8-3848] Net testing in module/entity HdmiInputChannel does not have driver. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/HdmiInOut.sv:51]
+INFO: [Synth 8-256] done synthesizing module 'HdmiInputChannel' (12#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/HdmiInOut.sv:17]
+INFO: [Synth 8-638] synthesizing module 'Filter' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:17]
+INFO: [Synth 8-638] synthesizing module 'RGBtoHSV' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:216]
+INFO: [Synth 8-638] synthesizing module 'Divider' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+	Parameter DIVIDEND_WIDTH bound to: 14 - type: integer 
+	Parameter DIVIDER_WIDTH bound to: 8 - type: integer 
+	Parameter QUOTIENT_WIDTH bound to: 7 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[1]' and it is trimmed from '7' to '6' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[2]' and it is trimmed from '7' to '6' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[3]' and it is trimmed from '7' to '6' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[4]' and it is trimmed from '7' to '6' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[5]' and it is trimmed from '7' to '6' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+INFO: [Synth 8-256] done synthesizing module 'Divider' (13#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+INFO: [Synth 8-638] synthesizing module 'Divider__parameterized0' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+	Parameter DIVIDEND_WIDTH bound to: 16 - type: integer 
+	Parameter DIVIDER_WIDTH bound to: 8 - type: integer 
+	Parameter QUOTIENT_WIDTH bound to: 8 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[1]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[2]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[3]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[4]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[5]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[6]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+INFO: [Synth 8-256] done synthesizing module 'Divider__parameterized0' (13#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+INFO: [Synth 8-638] synthesizing module 'DelaySignal' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DELAY_CYCLES bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DelaySignal' (14#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+INFO: [Synth 8-638] synthesizing module 'DelaySignal__parameterized0' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+	Parameter DATA_WIDTH bound to: 3 - type: integer 
+	Parameter DELAY_CYCLES bound to: 7 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DelaySignal__parameterized0' (14#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+INFO: [Synth 8-4471] merging register 'delayVal_reg[7:0]' into 'satDivisor_reg[7:0]' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:308]
+INFO: [Synth 8-256] done synthesizing module 'RGBtoHSV' (15#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:216]
+INFO: [Synth 8-638] synthesizing module 'Daltonizer' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:183]
+INFO: [Synth 8-638] synthesizing module 'Divider__parameterized1' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+	Parameter DIVIDEND_WIDTH bound to: 14 - type: integer 
+	Parameter DIVIDER_WIDTH bound to: 8 - type: integer 
+	Parameter QUOTIENT_WIDTH bound to: 8 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[1]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[2]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[3]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[4]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[5]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[6]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+INFO: [Synth 8-256] done synthesizing module 'Divider__parameterized1' (15#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+WARNING: [Synth 8-689] width (32) of port connection 'dividend' does not match port width (14) of module 'Divider__parameterized1' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:211]
+INFO: [Synth 8-638] synthesizing module 'Divider__parameterized2' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+	Parameter DIVIDEND_WIDTH bound to: 14 - type: integer 
+	Parameter DIVIDER_WIDTH bound to: 8 - type: integer 
+	Parameter QUOTIENT_WIDTH bound to: 8 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[1]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[2]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[3]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[4]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[5]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+WARNING: [Synth 8-3936] Found unconnected internal register 'quotientArray_reg[6]' and it is trimmed from '8' to '7' bits. [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:37]
+INFO: [Synth 8-256] done synthesizing module 'Divider__parameterized2' (15#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Divider.sv:17]
+WARNING: [Synth 8-689] width (32) of port connection 'dividend' does not match port width (14) of module 'Divider__parameterized2' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:213]
+INFO: [Synth 8-256] done synthesizing module 'Daltonizer' (16#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:183]
+INFO: [Synth 8-638] synthesizing module 'DelaySignal__parameterized1' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+	Parameter DATA_WIDTH bound to: 9 - type: integer 
+	Parameter DELAY_CYCLES bound to: 9 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DelaySignal__parameterized1' (16#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+INFO: [Synth 8-638] synthesizing module 'HSVtoRGB' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:332]
+INFO: [Synth 8-256] done synthesizing module 'HSVtoRGB' (17#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:332]
+INFO: [Synth 8-638] synthesizing module 'DelaySignal__parameterized2' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+	Parameter DATA_WIDTH bound to: 3 - type: integer 
+	Parameter DELAY_CYCLES bound to: 20 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'DelaySignal__parameterized2' (17#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/DelaySignal.sv:16]
+INFO: [Synth 8-256] done synthesizing module 'Filter' (18#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Filter.sv:17]
+INFO: [Synth 8-638] synthesizing module 'HdmiOutputChannel' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/HdmiInOut.sv:132]
+INFO: [Synth 8-638] synthesizing module 'TmdsEncoder' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/TmdsEncoder.sv:17]
+INFO: [Synth 8-256] done synthesizing module 'TmdsEncoder' (19#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/TmdsEncoder.sv:17]
+INFO: [Synth 8-638] synthesizing module 'Serializer' [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Serializer.sv:17]
+INFO: [Synth 8-638] synthesizing module 'OSERDESE2' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:25878]
+	Parameter DATA_RATE_OQ bound to: DDR - type: string 
+	Parameter DATA_RATE_TQ bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 10 - type: integer 
+	Parameter INIT_OQ bound to: 1'b1 
+	Parameter INIT_TQ bound to: 1'b1 
+	Parameter IS_CLKDIV_INVERTED bound to: 1'b0 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+	Parameter IS_D1_INVERTED bound to: 1'b0 
+	Parameter IS_D2_INVERTED bound to: 1'b0 
+	Parameter IS_D3_INVERTED bound to: 1'b0 
+	Parameter IS_D4_INVERTED bound to: 1'b0 
+	Parameter IS_D5_INVERTED bound to: 1'b0 
+	Parameter IS_D6_INVERTED bound to: 1'b0 
+	Parameter IS_D7_INVERTED bound to: 1'b0 
+	Parameter IS_D8_INVERTED bound to: 1'b0 
+	Parameter IS_T1_INVERTED bound to: 1'b0 
+	Parameter IS_T2_INVERTED bound to: 1'b0 
+	Parameter IS_T3_INVERTED bound to: 1'b0 
+	Parameter IS_T4_INVERTED bound to: 1'b0 
+	Parameter SERDES_MODE bound to: MASTER - type: string 
+	Parameter SRVAL_OQ bound to: 1'b0 
+	Parameter SRVAL_TQ bound to: 1'b0 
+	Parameter TBYTE_CTL bound to: FALSE - type: string 
+	Parameter TBYTE_SRC bound to: FALSE - type: string 
+	Parameter TRISTATE_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'OSERDESE2' (20#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:25878]
+INFO: [Synth 8-638] synthesizing module 'OSERDESE2__parameterized0' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:25878]
+	Parameter DATA_RATE_OQ bound to: DDR - type: string 
+	Parameter DATA_RATE_TQ bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 10 - type: integer 
+	Parameter INIT_OQ bound to: 1'b1 
+	Parameter INIT_TQ bound to: 1'b1 
+	Parameter IS_CLKDIV_INVERTED bound to: 1'b0 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+	Parameter IS_D1_INVERTED bound to: 1'b0 
+	Parameter IS_D2_INVERTED bound to: 1'b0 
+	Parameter IS_D3_INVERTED bound to: 1'b0 
+	Parameter IS_D4_INVERTED bound to: 1'b0 
+	Parameter IS_D5_INVERTED bound to: 1'b0 
+	Parameter IS_D6_INVERTED bound to: 1'b0 
+	Parameter IS_D7_INVERTED bound to: 1'b0 
+	Parameter IS_D8_INVERTED bound to: 1'b0 
+	Parameter IS_T1_INVERTED bound to: 1'b0 
+	Parameter IS_T2_INVERTED bound to: 1'b0 
+	Parameter IS_T3_INVERTED bound to: 1'b0 
+	Parameter IS_T4_INVERTED bound to: 1'b0 
+	Parameter SERDES_MODE bound to: SLAVE - type: string 
+	Parameter SRVAL_OQ bound to: 1'b0 
+	Parameter SRVAL_TQ bound to: 1'b0 
+	Parameter TBYTE_CTL bound to: FALSE - type: string 
+	Parameter TBYTE_SRC bound to: FALSE - type: string 
+	Parameter TRISTATE_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'OSERDESE2__parameterized0' (20#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:25878]
+INFO: [Synth 8-256] done synthesizing module 'Serializer' (21#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/Serializer.sv:17]
+INFO: [Synth 8-638] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:21941]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IOSTANDARD bound to: TMDS_33 - type: string 
+	Parameter SLEW bound to: FAST - type: string 
+INFO: [Synth 8-256] done synthesizing module 'OBUFDS' (22#1) [C:/Xilinx/Vivado/2016.4/scripts/rt/data/unisim_comp.v:21941]
+INFO: [Synth 8-256] done synthesizing module 'HdmiOutputChannel' (23#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/HdmiInOut.sv:132]
+INFO: [Synth 8-256] done synthesizing module 'top_module' (24#1) [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/sources_1/new/main.sv:26]
+WARNING: [Synth 8-3917] design top_module has port hdmi_rx_hpa driven by constant 1
+WARNING: [Synth 8-3917] design top_module has port hdmi_rx_txen driven by constant 1
+WARNING: [Synth 8-3917] design top_module has port hdmi_tx_rscl driven by constant 1
+WARNING: [Synth 8-3331] design top_module has unconnected port hdmi_rx_cec
+WARNING: [Synth 8-3331] design top_module has unconnected port hdmi_tx_cec
+WARNING: [Synth 8-3331] design top_module has unconnected port hdmi_tx_rsda
+WARNING: [Synth 8-3331] design top_module has unconnected port sw[4]
+WARNING: [Synth 8-3331] design top_module has unconnected port sw[3]
+WARNING: [Synth 8-3331] design top_module has unconnected port sw[2]
+WARNING: [Synth 8-3331] design top_module has unconnected port sw[1]
+WARNING: [Synth 8-3331] design top_module has unconnected port sw[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:06:11 ; elapsed = 03:18:23 . Memory (MB): peak = 2195.727 ; gain = 1984.656
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:06:11 ; elapsed = 03:18:23 . Memory (MB): peak = 2195.727 ; gain = 1984.656
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-141] Inserted 4 OBUFs to IO ports without IO buffers.
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+Finished Parsing XDC File [C:/Users/Ben/Google Drive/Digipen/Daltonismo-2016.4 test/Daltonismo.srcs/constrs_1/new/NexysVideo.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  MMCME2_BASE => MMCME2_ADV: 2 instances
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:06:21 ; elapsed = 03:18:29 . Memory (MB): peak = 2346.262 ; gain = 2135.191
+74 Infos, 38 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:11 . Memory (MB): peak = 2346.262 ; gain = 237.891
+current_design synth_1
+current_design rtl_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Jan 31 18:26:21 2017...
