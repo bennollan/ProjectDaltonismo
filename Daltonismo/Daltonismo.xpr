@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="G:/Cody DALTonismo/ProjectDaltonismo/Daltonismo/Daltonismo.xpr">
+<Project Version="7" Minor="17" Path="C:/Users/Dingler/Documents/ProjectDaltonismo/Daltonismo/Daltonismo.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="4947d468d8c84de58c06164b25145c1c"/>

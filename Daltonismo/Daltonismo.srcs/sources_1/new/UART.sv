@@ -106,7 +106,7 @@ begin
       0 :begin
           if(UARTbyte == "0") 
             superCase <= superCase + 1;
-          else if(UARTbyte == "\r" || UARTbyte == "\n")
+          else if(UARTbyte == "\r" || UARTbyte == "\n" || UARTbyte == "M" )
             matrixIterator <= 0;
         end
 
