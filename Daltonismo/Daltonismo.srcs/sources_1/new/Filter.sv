@@ -16,7 +16,10 @@
 
 module Filter(
     input clk,
+    input clk100Mhz,
     input [2:0]switcher,
+    input uart_tx_in,
+    output uart_rx_out,
     input [2:0] syncIn,
     input [7:0] redIn,
     input [7:0] greenIn,
@@ -28,40 +31,44 @@ module Filter(
     );
   logic [2:0]filterStage;
   logic [8:0] frames;
-  logic [8:0] hue;
-  logic [8:0] correctedHue;
-  always_comb
-  begin
-    if(switcher > 3'b100)
-    begin
-      if(frames + hue > 383)
-        correctedHue = (hue + frames) - 384;
-      else
-        correctedHue = hue + frames;
-    end
-    else
-      correctedHue = hue;
-  end
+
   
     
   
-  logic [7:0] sat;
-  logic [7:0] correctedSat;
-  logic [7:0] satDelayed;
-  logic [7:0] val;
-  logic [7:0] correctedVal;
-  logic [7:0] HSVred,HSVgreen,HSVblue;
-  RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-  Daltonizer colorCorrect(clk, hue, sat, val, correctedSat, correctedVal);
-  logic[8:0] hueDelayed;
-  logic[7:0] valDelayed;
-  DelaySignal #(.DATA_WIDTH(9),.DELAY_CYCLES(9)) HueDelay(clk,correctedHue, hueDelayed);
-  DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES(8)) ValueDelay(clk,val, valDelayed);
-  DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES(8)) SatDelay(clk,sat, satDelayed);
+  logic [31:0] HSVred,HSVgreen,HSVblue;
+  //RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
+  //Daltonizer colorCorrect(clk, hue, sat, val, correctedSat, correctedVal);
+  
+  logic [31:0] matrix[9];
+  
+  MatrixReceiver Jamal(clk100Mhz, uart_tx_in, uart_rx_out, matrix);
   
   logic [7:0] satRGB;
   logic [7:0] valRGB;
-  HSVtoRGB filt2(clk, hueDelayed,satRGB, valRGB, HSVred, HSVgreen, HSVblue);
+  //HSVtoRGB filt2(clk, hueDelayed,satRGB, valRGB, HSVred, HSVgreen, HSVblue);
+  //Daltonize filt1(clk, {8'b0,redIn,16'b0}, {8'b0,greenIn,16'b0}, {8'b0,blueIn,16'b0}, HSVred, HSVgreen, HSVblue, matrix);
+  parameter NUM_WID = 32;
+    parameter NUM_DEC = 16;
+    
+    parameter PROD_WID = 32;
+    parameter PROD_DEC = 16;
+
+    ThreeByThreeMatrixMultiplier
+    #(.NUMBER_WIDTH(NUM_WID), .NUMBER_DECIMALS(NUM_DEC),
+    .PRODUCT_WIDTH(PROD_WID), .PRODUCT_DECIMALS(PROD_DEC))
+    Daltonismonster(
+    clk,
+    {8'b0,redIn,16'b0}, {8'b0,greenIn,16'b0}, {8'b0,blueIn,16'b0},
+    
+     matrix[0], matrix[1], matrix[2],
+     matrix[3], matrix[4], matrix[5],
+     matrix[6], matrix[7], matrix[8],
+    // 65536,0,0,
+    // 0,65536,0,
+    // 0,0,65536,
+    
+    HSVred, HSVgreen, HSVblue
+    );
     
   DelaySignal #(.DATA_WIDTH(3),.DELAY_CYCLES(20)) SyncDelay(clk,syncIn, syncOut);
   logic [2:0]currentFilter;
@@ -69,46 +76,34 @@ module Filter(
   begin
     case(currentFilter)
       0:begin
-        satRGB <= satDelayed;
-        valRGB <= valDelayed;
-        redOut <= HSVred;
-        greenOut <= HSVgreen;
-        blueOut <= HSVblue;
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       1:begin
-        satRGB <= satDelayed;
-        valRGB <= valDelayed;
-        redOut <= (HSVred + HSVgreen)/2;
-        greenOut <= (HSVred + HSVgreen)/2;
-        blueOut <= HSVblue;
+        redOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        greenOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        blueOut <= HSVblue[23:16];
       end
       2:begin
-        satRGB <= correctedSat;
-        valRGB <= correctedVal;
-        redOut <= HSVred;
-        greenOut <= HSVgreen;
-        blueOut <= HSVblue;
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       3:begin
-        satRGB <= correctedSat;
-        valRGB <= correctedVal;
-        redOut <= (HSVred + HSVgreen)/2;
-        greenOut <= (HSVred + HSVgreen)/2;
-        blueOut <= HSVblue;
+        redOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        greenOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        blueOut <= HSVblue[23:16];
       end
       4:begin
-        satRGB <= satDelayed;
-        valRGB <= valDelayed;
-        redOut <= ~HSVred;
-        greenOut <= ~HSVgreen;
-        blueOut <= ~HSVblue;
+        redOut <= ~HSVred[23:16];
+        greenOut <= ~HSVgreen[23:16];
+        blueOut <= ~HSVblue[23:16];
       end
       default:begin
-        satRGB <= satDelayed;
-        valRGB <= valDelayed;
-        redOut <= HSVred;
-        greenOut <= HSVgreen;
-        blueOut <= HSVblue;
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       endcase
   end
