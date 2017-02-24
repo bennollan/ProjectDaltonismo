@@ -45,17 +45,7 @@ module HdmiInputChannel(
     //  TMDS Symbol Decoder
     /////////////////////////
     logic symbolGood;
-    logic [2:0]syncs;
-    TmdsDecoder Decode(clk,symbol,symbolGood,dataOut,syncs);
-    
-    logic testing;
-    always_comb
-    begin
-      if(testing)
-        syncOut = 3'b101;
-      else
-        syncOut = syncs;
-    end
+    TmdsDecoder Decode(clk,symbol,symbolGood,dataOut,syncOut);
     
 
     logic [23:0]goodCount;

@@ -16,7 +16,10 @@
 
 module Filter(
     input clk,
-    input switcher,
+    input clk100Mhz,
+    input [2:0]switcher,
+    input uart_tx_in,
+    output uart_rx_out,
     input [2:0] syncIn,
     input [7:0] redIn,
     input [7:0] greenIn,
@@ -26,90 +29,81 @@ module Filter(
     output logic [7:0] greenOut,
     output logic [7:0] blueOut
     );
-    
-  logic [8:0] frames;
-  logic [8:0] hue;
-  logic [8:0] correctedHue;
-  always_comb
-  begin
-    if(frames + hue > 383)
-      correctedHue = hue;//(hue + frames) - 384;
-    else
-      correctedHue = hue;// + frames;
-  end
-  
-    
-  
-  logic [7:0] sat;
-  logic [7:0] realSat;
-  logic [7:0] val;
-  logic [7:0] HSVred,HSVgreen,HSVblue;
-  RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
-  HSVtoRGB filt2(clk, correctedHue,realSat, val, HSVred, HSVgreen, HSVblue);
-    
-    
   logic [2:0]filterStage;
+  logic [8:0] frames;
+
+  
+    
+  
+  logic [31:0] HSVred,HSVgreen,HSVblue;
+  //RGBtoHSV filt1(clk, redIn, greenIn, blueIn, hue, sat, val);
+  //Daltonizer colorCorrect(clk, hue, sat, val, correctedSat, correctedVal);
+  
+  logic [31:0] matrix[9];
+  
+  MatrixReceiver Jamal(clk100Mhz, uart_tx_in, uart_rx_out, matrix);
+  
+  logic [7:0] satRGB;
+  logic [7:0] valRGB;
+  //HSVtoRGB filt2(clk, hueDelayed,satRGB, valRGB, HSVred, HSVgreen, HSVblue);
+  //Daltonize filt1(clk, {8'b0,redIn,16'b0}, {8'b0,greenIn,16'b0}, {8'b0,blueIn,16'b0}, HSVred, HSVgreen, HSVblue, matrix);
+  parameter NUM_WID = 32;
+    parameter NUM_DEC = 16;
+    
+    parameter PROD_WID = 32;
+    parameter PROD_DEC = 16;
+
+    ThreeByThreeMatrixMultiplier
+    #(.NUMBER_WIDTH(NUM_WID), .NUMBER_DECIMALS(NUM_DEC),
+    .PRODUCT_WIDTH(PROD_WID), .PRODUCT_DECIMALS(PROD_DEC))
+    Daltonismonster(
+    clk,
+    {8'b0,redIn,16'b0}, {8'b0,greenIn,16'b0}, {8'b0,blueIn,16'b0},
+    
+     matrix[0], matrix[1], matrix[2],
+     matrix[3], matrix[4], matrix[5],
+     matrix[6], matrix[7], matrix[8],
+    // 65536,0,0,
+    // 0,65536,0,
+    // 0,0,65536,
+    
+    HSVred, HSVgreen, HSVblue
+    );
+    
+  DelaySignal #(.DATA_WIDTH(3),.DELAY_CYCLES(20)) SyncDelay(clk,syncIn, syncOut);
   logic [2:0]currentFilter;
   always@(posedge clk)
   begin
     case(currentFilter)
       0:begin
-        syncOut <= syncIn;
-        redOut <= redIn;
-        greenOut <= greenIn;
-        blueOut <= blueIn;
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       1:begin
-        syncOut <= syncIn;
-        redOut <= (redIn + greenIn)/2;
-        greenOut <= (redIn + greenIn)/2;
-        blueOut <= blueIn;
+        redOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        greenOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        blueOut <= HSVblue[23:16];
       end
       2:begin
-        syncOut <= syncIn;
-        redOut <= greenIn;
-        greenOut <= blueIn;
-        blueOut <= redIn;
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       3:begin
-        syncOut <= syncIn;
-        redOut <= (greenIn + redIn + blueIn)/3;
-        greenOut <= (greenIn + redIn + blueIn)/3;
-        blueOut <= (greenIn + redIn + blueIn)/3;
+        redOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        greenOut <= (HSVred[23:16] + HSVgreen[23:16])/2;
+        blueOut <= HSVblue[23:16];
       end
       4:begin
-        syncOut <= syncIn;
-        redOut <= ~redIn;
-        greenOut <= ~greenIn;
-        blueOut <= ~blueIn;
+        redOut <= ~HSVred[23:16];
+        greenOut <= ~HSVgreen[23:16];
+        blueOut <= ~HSVblue[23:16];
       end
-      5:begin
-        syncOut <= syncIn;
-        foreach(redIn[idx]) 
-        begin
-          redOut[idx] <= redIn[7-idx];
-          greenOut[idx] <= greenIn[7-idx];
-          blueOut[idx] <= blueIn[7-idx];
-        end
-      end
-      6:begin
-        realSat <= 255;
-        syncOut <= syncIn;
-        redOut <= HSVred;
-        greenOut <= HSVgreen;
-        blueOut <= HSVblue;
-      end
-      default:
-      begin
-        syncOut <= syncIn;
-        if(redIn > greenIn && redIn > blueIn)
-        begin
-          redOut <= 255;
-        end
-        else
-          redOut <= redIn;
-        greenOut <= greenIn;
-        blueOut <= blueIn;
+      default:begin
+        redOut <= HSVred[23:16];
+        greenOut <= HSVgreen[23:16];
+        blueOut <= HSVblue[23:16];
       end
       endcase
   end
@@ -123,17 +117,17 @@ module Filter(
   logic [15:0]vSize;
   always@(posedge clk)
   begin
-    if(!syncIn[0])
+    if(!syncOut[0])
     begin
       hPos <= hPos + 1;
     end
-    if(syncIn[0] && syncIn[1] && hPos)
+    if(syncOut[0] && syncOut[1] && hPos)
     begin
       vPos <= vPos + 1;
       hSize <= hPos;
       hPos <= 0;
     end
-    if(syncIn[0] && syncIn[2] && vPos)
+    if(syncOut[0] && syncOut[2] && vPos)
     begin
       if(frames  >= 9'h17F)
           frames <= 0;
@@ -143,22 +137,75 @@ module Filter(
       vPos <= 0;
     end
       
+    case(switcher)
+      0:begin
+        currentFilter <= switcher;
+      end
+      1:begin
+        currentFilter <= switcher;
+      end
+      2:begin
+        currentFilter <= switcher;
+      end
+      3:begin
+        currentFilter <= switcher;
+      end
+      4:begin
+        currentFilter[2] <= 0;
+        if(hPos < hSize / 2)
+          currentFilter[0] <= 0;
+        else
+          currentFilter[0] <= 1;
+          
+        if(vPos < vSize / 2)
+          currentFilter[1] <= 0;
+        else
+          currentFilter[1] <= 1;
+      end
+      6:begin
+        currentFilter <= 4;
+      end
+      default:begin
+        currentFilter <= 0;
+      end
+    endcase
     
-    if(hPos < hSize / 2 && 0)
-      currentFilter <= 0;
-    else
-      currentFilter <= filterStage;
-      
-    if(count == 0)
-    begin
-      if(switcher && !lSwitchState)
-        filterStage <= filterStage + 1;
-        
-      lSwitchState <= switcher;
-    end
-    count <= count + 1;
   end
     
+endmodule
+
+
+module Daltonizer(
+       input clk, 
+       input [8:0]hue, 
+       input [7:0]sat, 
+       input [7:0]val,
+       output [7:0]correctedSat,
+       output [7:0]correctedVal
+       );
+       
+  logic [7:0]satDivisor;
+  logic [7:0]valDivisor;
+  always_comb
+  begin
+    if(hue < 64)
+      satDivisor = 128 - hue;
+    else if(hue > 320)
+      satDivisor = hue - 256;
+    else
+      satDivisor = 64;
+      
+    if(hue >= 64 && hue < 128)
+      valDivisor = hue;
+    else if(hue >= 128 && hue < 192)
+      valDivisor = 256 - hue;
+    else
+      valDivisor = 64;
+  end
+  Divider #(.DIVIDEND_WIDTH(14), .DIVIDER_WIDTH(8), .QUOTIENT_WIDTH(8)) 
+             DaltSatDivide(clk, (sat * 64), satDivisor, correctedSat);
+  Divider #(.DIVIDEND_WIDTH(14), .DIVIDER_WIDTH(8), .QUOTIENT_WIDTH(8)) 
+             DaltValDivide(clk, (val * 64), valDivisor, correctedVal);
 endmodule
 
 module RGBtoHSV(
@@ -171,69 +218,110 @@ module RGBtoHSV(
     output logic [7:0] val
     );
     
+    logic [13:0]hueDividend;
+    logic [7:0]hueDivisor;
+    logic [6:0]huequotient;
+    
+    logic [15:0]satDividend;
+    logic [7:0]satDivisor;
+    logic [7:0]satquotient;
+    
+    logic [7:0]delayVal;
+    logic [2:0]delayedSwitch;
+    
+    logic [2:0]switcher = 0;
+    
   always@(posedge clk)
   begin
-  
     logic [7:0]delta;
-    if(red == green && green == blue)
+    logic [7:0]max;
+    logic [7:0]mid;
+    logic [7:0]min;
+    
+    //0-63 red to yellow
+    // 320-383 magenta to red
+    // 64 - 128 yellow to green
+    // 128-192 green to cyan
+    // 192-256 cyan to blue
+    // 256-320 blue to magenta
+
+    if(red >= green && red >= blue)
     begin
-      hue <= 0;
-      sat <= 0;
-      val <= red;
+      if(green > blue)
+      begin //0-63 red to yellow
+        mid = green;
+        min = blue;
+        switcher <= 0;
+      end
+      else
+      begin // 320-383 magenta to red
+        mid = blue;
+        min = green;
+        switcher <= 1;
+      end
+      max = red;
+    end
+    else if(green >= red && green >= blue)
+    begin
+      if(red > blue)
+      begin  // 64 - 128 yellow to green
+        min = blue;
+        mid = red;
+        switcher <= 2;
+      end
+      else
+      begin  // 128-192 green to cyan
+        min = red;
+        mid = blue;
+        switcher <= 3;
+      end
+      max = green;      
     end
     else
     begin
-      if(red >= green && red >= blue)
-      begin
-        if(green > blue)
-        begin
-          delta = red - blue;
-          hue <= ((green - blue) * 64) / delta; //0-64 red to yellow
-        end
-        else
-        begin
-          delta = red - green;
-          hue <= 383 - ((blue - green) * 64) / delta; // 320-383 magenta to red
-        end
-         val <= red;
-         sat <= (delta * 255) / red;
-        
-      end
-      else if(green >= red && green >= blue)
-      begin
-        if(red > blue)
-        begin
-          delta = green - blue;
-          hue <= 128 - ((red - blue) * 64) / delta;	// 64 - 128 yellow to green
-        end
-        else
-        begin
-          delta = green - red;
-          hue <= 128 + ((blue - red) * 64) / delta;	// 128-192 green to cyan
-        end
-        val <= green;
-        sat <= (delta * 255) / green;
-        
+      if(green > red)
+      begin  // 192-256 cyan to blue
+        min = red;
+        mid = green;
+        switcher <= 4;
       end
       else
-      begin
-        if(green > red)
-        begin
-          delta = blue - red;
-          hue <= 256 - ((green - red) * 64) / delta;  // 192-256 cyan to blue
-        end
-        else
-        begin
-          delta = blue - green;
-          hue <= 256 + ((red - green) * 64) / delta;  // 256-320 blue to magenta
-        end
-        val <= blue;
-        
-        sat <= (delta * 255) / blue;
-        
+      begin  // 256-320 blue to magenta
+        min = green;
+        mid = red;
+        switcher <= 5;
       end
+      max = blue;
     end
+    
+    hueDividend <= ((mid - min) * 64);
+    hueDivisor <= max-min;
+    
+    satDividend <= ((max-min) * 255);
+    satDivisor <= max;
+    
+    delayVal <= max;
+    
+    case(delayedSwitch)
+      0:      hue <=       huequotient;//   0- 63 red to yellow
+      1:      hue <= 383 - huequotient;// 320-383 magenta to red
+      2:      hue <= 127 - huequotient;//  64-127 yellow to green
+      3:      hue <= 128 + huequotient;// 128-191 green to cyan
+      4:      hue <= 255 - huequotient;// 192-255 cyan to blue
+      default:hue <= 256 + huequotient;// 256-319 blue to magenta
+    endcase
+    
   end
+  //hue <= ((mid - min) * 64) / (max-min);
+  Divider #(.DIVIDEND_WIDTH(14), .DIVIDER_WIDTH(8), .QUOTIENT_WIDTH(7)) 
+      HueDivide(clk ,hueDividend, hueDivisor, huequotient);
+  //sat <= ((max-min) * 255) / max;
+  Divider #(.DIVIDEND_WIDTH(16), .DIVIDER_WIDTH(8), .QUOTIENT_WIDTH(8)) 
+      SatDivide(clk, satDividend, satDivisor, sat);
+      
+  DelaySignal #(.DATA_WIDTH(8),.DELAY_CYCLES(8)) ValueDelay(clk,delayVal, val);
+  DelaySignal #(.DATA_WIDTH(3),.DELAY_CYCLES(7)) SwitchDelay(clk,switcher, delayedSwitch);
+  
 endmodule
 
 module pipelineRGBtoHSV(

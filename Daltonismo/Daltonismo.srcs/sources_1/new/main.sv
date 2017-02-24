@@ -26,6 +26,8 @@
 module top_module(
     input logic clk,
     input logic [7:0]sw,
+    input logic uart_tx_in,
+    output logic uart_rx_out,
     //input logic btnC,
     
     //HDMI in
@@ -104,7 +106,7 @@ module top_module(
   logic [7:0]redDataOut;
   logic [7:0]greenDataOut;
   logic [7:0]blueDataOut;  
-  Filter SuperFilter(HdmiClk, sw[7:5], syncIn, redDataIn, greenDataIn, blueDataIn, syncOut, redDataOut, greenDataOut, blueDataOut);
+  Filter SuperFilter(HdmiClk,clk, sw[7:5], uart_tx_in, uart_rx_out, syncIn, redDataIn, greenDataIn, blueDataIn, syncOut, redDataOut, greenDataOut, blueDataOut);
   
   logic useSymbol;
   assign useSymbol = 1'b1; //!sw[6];
