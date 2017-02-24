@@ -425,3 +425,5 @@ dismissDialog("Program Device"); // bt:g (cd:JFrame)
 // HMemoryUtils.trashcanNow. Engine heap size: 1,356 MB. GUI used memory: 93 MB. Current time: 2/23/17 8:26:15 PM PST
 // [GUI Memory]: 127 MB (+368kb) [01:03:39]
 // HMemoryUtils.trashcanNow. Engine heap size: 1,356 MB. GUI used memory: 92 MB. Current time: 2/23/17 8:56:15 PM PST
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking too long to process. Increasing delay to 7000 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking too long to process. Increasing delay to 9000 ms.
