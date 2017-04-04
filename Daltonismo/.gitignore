@@ -2,3 +2,7 @@ Daltonismo.cache/
 Daltonismo.runs/
 Daltonismo.sim/
 Daltonismo.hw/
+*.jou
+*.log
+*.zip
+
