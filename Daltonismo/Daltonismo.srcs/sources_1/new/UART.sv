@@ -135,7 +135,7 @@ begin
         stage <= LOOK4START;
       end
     end
-    default:stage <= 0;
+    default:stage <= LOOK4START;
   endcase
 end
 endmodule
